@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 
 from .models import UserInfo, UserProfile
@@ -17,9 +18,16 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 	serializer_class = UserProfileSerializer
 	permission_classes = (IsAuthenticated,)
 
+	def retrieve(self, request, pk=None):
+
+		queryset = UserProfile.objects.all()
+		user = get_object_or_404(queryset, pk=pk)
+		serializer = UserProfileSerializer(user)
+		return Response(serializer.data)
+
 
 	def create(self,request):
-		print("shitty user", request.user)
+		print("User", request.user)
 		serializer = UserProfileSerializer(data=request.data)
 		if serializer.is_valid():
 			serializer.save(user=request.user)

@@ -5,8 +5,10 @@ from .models import UserInfo, UserProfile
 
 class UserSerializer(serializers.ModelSerializer):
 
-    confirm_password = serializers.CharField(write_only=True, 
-                                            style = {'input_type': 'password', 'placeholder': 'Confirm Password'})
+    confirm_password = serializers.CharField(write_only=True,
+                                            required = True, 
+                                            style = {'input_type': 'password', 'placeholder': 'Confirm Password'},
+                                            error_messages = {"blank": "This field is required"})
 
     class Meta:
 

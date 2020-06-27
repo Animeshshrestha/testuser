@@ -112,6 +112,13 @@ class UserProfile(TimeStampedUUID):
 	def __str__(self):
 		return ('{} , {}'.format(self.firstname,self.lastname))
 
+	@property
+	def user_email(self, email):
+
+		email = self.user.email
+		print("Email is", email)
+		return email
+
 class Education(TimeStampedUUID):
 	DEGREE_CHOICES = (
 		(0, 'P.hD'),
