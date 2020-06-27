@@ -110,14 +110,7 @@ class UserProfile(TimeStampedUUID):
 	describe_about_yourself = models.TextField(blank=True, null=True)
 
 	def __str__(self):
-		return ('{} , {}'.format(self.firstname,self.lastname))
-
-	@property
-	def user_email(self, email):
-
-		email = self.user.email
-		print("Email is", email)
-		return email
+		return ('{} , {}'.format(self.firstname,self.lastname))		
 
 class Education(TimeStampedUUID):
 	DEGREE_CHOICES = (
